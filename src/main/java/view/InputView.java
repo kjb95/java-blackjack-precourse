@@ -3,6 +3,7 @@ package view;
 import constant.Constant;
 import constant.ErrorMessage;
 import constant.Message;
+import constant.MessageForm;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -36,6 +37,21 @@ public class InputView {
                 .anyMatch(playerName -> playerName.length() == 0);
         if (hasEmptyName) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_PLAYER_NAME);
+        }
+    }
+
+    public static int requestPlayerBetAmount(String playerName) {
+        System.out.println();
+        System.out.printf(MessageForm.REQUEST_BET_AMOUNT_FORM, playerName);
+        System.out.println();
+        String input = scanner.nextLine();
+        validatePlayerBetAmount(input);
+        return Integer.parseInt(input);
+    }
+
+    private static void validatePlayerBetAmount(String playerBetAmount) {
+        if (!Utils.isNumber(playerBetAmount)) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_PLAYER_BET_AMOUNT);
         }
     }
 }

@@ -6,13 +6,19 @@ import view.InputView;
 import view.OutputView;
 
 public class BlackjackController {
+
     public void run() {
-        requestPlayerNames();
+        initPlayer();
     }
 
-    private void requestPlayerNames() {
-
+    private void initPlayer() {
         List<String> playerNames = Utils.exceptionHandlingRepeat(InputView::requestPlayerNames, OutputView::printErrorMessage);
+        playerNames.forEach(this::initPlayer);
+    }
+
+    private void initPlayer(String playerName) {
+        int betAmount = Utils.exceptionHandlingRepeat(InputView::requestPlayerBetAmount, playerName, OutputView::printErrorMessage);
+
     }
 
 }
