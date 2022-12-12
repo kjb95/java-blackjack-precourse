@@ -9,7 +9,7 @@ public class Deck {
 
     public Deck() {
         List<Card> cards = CardFactory.create();
-        cards.forEach(cards::add);
+        cards.forEach(this.cards::add);
     }
 
     public Card draw() {

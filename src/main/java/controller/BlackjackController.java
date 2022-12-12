@@ -12,22 +12,20 @@ public class BlackjackController {
     private BlackjackService blackjackService = new BlackjackService();
 
     public void run() {
-        initPlayer();
-        initCardDistribution();
+        initPlayers();
     }
 
-    private void initPlayer() {
+    private void initPlayers() {
         List<String> playerNames = Utils.exceptionHandlingRepeat(InputView::requestPlayerNames, OutputView::printErrorMessage);
         playerNames.forEach(this::initPlayer);
+        OutputView.printInitCardDistribution(playerNames);
+        CardDto cardDto = blackjackService.dealerInitCardDistribution();
+        OutputView.printDealerInitCard(cardDto);
     }
 
     private void initPlayer(String playerName) {
         int betAmount = Utils.exceptionHandlingRepeat(InputView::requestPlayerBetAmount, playerName, OutputView::printErrorMessage);
         blackjackService.addPlayer(playerName, betAmount);
-    }
-
-    private void initCardDistribution() {
-        CardDto cardDto = blackjackService.dealerInitCardDistribution();
     }
 
 

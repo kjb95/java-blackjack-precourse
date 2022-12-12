@@ -19,11 +19,11 @@ public class Card {
     // TODO Card 관련 추가 기능 구현
 
     public String getSymbolName() {
-        return symbol.name();
+        return symbol.getSign();
     }
 
     public String getTypeName() {
-        return type.name();
+        return type.getKorean();
     }
 
     @Override
