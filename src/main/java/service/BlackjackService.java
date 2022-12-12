@@ -32,9 +32,17 @@ public class BlackjackService {
         return playerGroup.createPlayerCardDtos();
     }
 
-    public PlayerCardDto drawCard(String playerName) {
+    public PlayerCardDto playerDrawCard(String playerName) {
         Player player = playerGroup.findPlayerByName(playerName);
         player.addCard(deck.draw());
         return player.createPlayerCardDto();
+    }
+
+    public boolean isDealerDrawMoreCard() {
+        return dealer.isDrawMoreCard();
+    }
+
+    public void dealerDrawCard() {
+        dealer.addCard(deck.draw());
     }
 }

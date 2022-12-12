@@ -53,4 +53,11 @@ public class OutputView {
     }
 
 
+    public static void printDealerDrawMoreCard() {
+        System.out.println(Message.DEALER_DRAW_MORE_CARD);
+    }
+
+    public static void printNewLine() {
+        System.out.println();
+    }
 }

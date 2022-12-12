@@ -34,16 +34,28 @@ public class BlackjackController {
     }
 
     private void drawMoreCard(List<String> playerNames) {
-        playerNames.forEach(this::drawMoreCard);
+        playerNames.forEach(this::playerDrawMoreCard);
+        OutputView.printNewLine();
+        dealerDrawMoreCard();
     }
 
-    private void drawMoreCard(String playerName) {
+    private void playerDrawMoreCard(String playerName) {
         boolean isDrawCard = Utils.exceptionHandlingRepeat(InputView::requestDrawMoreCard, playerName, OutputView::printErrorMessage);
         if (!isDrawCard) {
             return;
         }
-        PlayerCardDto playerCardDto = blackjackService.drawCard(playerName);
+        PlayerCardDto playerCardDto = blackjackService.playerDrawCard(playerName);
         OutputView.printPlayerCard(playerCardDto);
-        drawMoreCard(playerName);
+        playerDrawMoreCard(playerName);
+    }
+
+    private void dealerDrawMoreCard() {
+        boolean isDealerDrawMoreCard = blackjackService.isDealerDrawMoreCard();
+        if (!isDealerDrawMoreCard) {
+            return;
+        }
+        blackjackService.dealerDrawCard();
+        OutputView.printDealerDrawMoreCard();
+        dealerDrawMoreCard();
     }
 }
