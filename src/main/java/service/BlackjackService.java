@@ -6,6 +6,8 @@ import domain.user.Dealer;
 import domain.user.Player;
 import domain.user.PlayerGroup;
 import dto.CardDto;
+import dto.PlayerCardDto;
+import java.util.List;
 
 public class BlackjackService {
 
@@ -23,5 +25,10 @@ public class BlackjackService {
         dealer.addCard(card);
         dealer.addCard(deck.draw());
         return new CardDto(card.getSymbolName(), card.getTypeName());
+    }
+
+    public List<PlayerCardDto> playersInitCardDistribution() {
+        playerGroup.initCardDistribution(deck);
+        return playerGroup.createPlayerCardDtos();
     }
 }

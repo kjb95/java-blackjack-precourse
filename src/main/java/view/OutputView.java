@@ -1,9 +1,12 @@
 package view;
 
 import constant.Constant;
+import constant.Message;
 import constant.MessageForm;
 import dto.CardDto;
+import dto.PlayerCardDto;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -25,4 +28,28 @@ public class OutputView {
         System.out.printf(MessageForm.INIT_CARD_DISTRIBUTION_FORM, parsedPlayerNames);
         System.out.println();
     }
+
+    public static void printPlayersInitCard(List<PlayerCardDto> playerCardDtos) {
+        playerCardDtos.forEach(OutputView::printPlayerInitCard);
+    }
+
+    private static void printPlayerInitCard(PlayerCardDto playerCardDto) {
+        String playerName = playerCardDto.getPlayerName();
+        List<CardDto> cardDtos = playerCardDto.getCardDtos();
+        String cards = cardDtosToString(cardDtos);
+        System.out.printf(MessageForm.PLAYER_INIT_CARD_FORM, playerName, cards);
+        System.out.println();
+    }
+
+    private static String cardDtosToString(List<CardDto> cardDtos) {
+        return cardDtos.stream()
+                .map(OutputView::cardDtoToString)
+                .collect(Collectors.joining(Message.CARDS_JOIN_REGEX));
+    }
+
+    private static String cardDtoToString(CardDto cardDto) {
+        return cardDto.getSymbol() + cardDto.getType();
+    }
+
+
 }

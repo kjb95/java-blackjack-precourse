@@ -1,6 +1,7 @@
 package controller;
 
 import dto.CardDto;
+import dto.PlayerCardDto;
 import java.util.List;
 import service.BlackjackService;
 import utils.Utils;
@@ -21,6 +22,8 @@ public class BlackjackController {
         OutputView.printInitCardDistribution(playerNames);
         CardDto cardDto = blackjackService.dealerInitCardDistribution();
         OutputView.printDealerInitCard(cardDto);
+        List<PlayerCardDto> playerCardDtos = blackjackService.playersInitCardDistribution();
+        OutputView.printPlayersInitCard(playerCardDtos);
     }
 
     private void initPlayer(String playerName) {

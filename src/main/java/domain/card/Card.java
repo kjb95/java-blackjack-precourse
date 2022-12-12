@@ -1,5 +1,6 @@
 package domain.card;
 
+import dto.CardDto;
 import java.util.Objects;
 
 /**
@@ -24,6 +25,10 @@ public class Card {
 
     public String getTypeName() {
         return type.getKorean();
+    }
+
+    public CardDto toDto() {
+        return new CardDto(getSymbolName(), getTypeName());
     }
 
     @Override
