@@ -19,6 +19,14 @@ public class Card {
 
     // TODO Card 관련 추가 기능 구현
 
+    public CardDto toDto() {
+        return new CardDto(getSymbolName(), getTypeName());
+    }
+
+    public boolean isAce() {
+        return symbol.isAce();
+    }
+
     public String getSymbolName() {
         return symbol.getSign();
     }
@@ -27,9 +35,10 @@ public class Card {
         return type.getKorean();
     }
 
-    public CardDto toDto() {
-        return new CardDto(getSymbolName(), getTypeName());
+    public int getScore() {
+        return symbol.getScore();
     }
+
 
     @Override
     public boolean equals(Object o) {
