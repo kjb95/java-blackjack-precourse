@@ -7,6 +7,7 @@ import dto.CardDto;
 import dto.DealerCardResultDto;
 import dto.PlayerCardDto;
 import dto.PlayerCardResultDto;
+import dto.RevenueDto;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +68,7 @@ public class OutputView {
         List<CardDto> cardDtos = dealerCardResultDto.getCards();
         int score = dealerCardResultDto.getScore();
         String cards = cardDtosToString(cardDtos);
+        System.out.println();
         System.out.printf(MessageForm.DEALER_CARD_RESULT_FROM, cards, score);
         System.out.println();
     }
@@ -81,6 +83,29 @@ public class OutputView {
         String cards = cardDtosToString(cardDtos);
         int score = playerCardResultDto.getScore();
         System.out.printf(MessageForm.PLAYER_CARD_RESULT_FORM, name, cards, score);
+        System.out.println();
+    }
+
+    public static void printRevenueResult(List<RevenueDto> revenueResultDtos) {
+        int dealerRevenue = computeDealerRevenue(revenueResultDtos);
+        System.out.println();
+        System.out.printf(MessageForm.TITLE_MESSAGE_FORM, Message.FINAL_REVENUE);
+        System.out.println();
+        System.out.printf(MessageForm.DEALER_REVENUE_FORM, dealerRevenue);
+        System.out.println();
+        revenueResultDtos.forEach(OutputView::printPlayerRevenueResult);
+    }
+
+    private static int computeDealerRevenue(List<RevenueDto> revenueResultDtos) {
+        return -revenueResultDtos.stream()
+                .mapToInt(revenueResultDto -> revenueResultDto.getRevenue())
+                .sum();
+    }
+
+    private static void printPlayerRevenueResult(RevenueDto revenueDto) {
+        String name = revenueDto.getName();
+        int revenue = revenueDto.getRevenue();
+        System.out.printf(MessageForm.PLAYER_REVENUE_FORM, name, revenue);
         System.out.println();
     }
 }

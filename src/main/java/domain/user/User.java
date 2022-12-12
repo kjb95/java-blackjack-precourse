@@ -10,4 +10,8 @@ public class User {
     public void addCard(Card card) {
         cardGroup.addCard(card);
     }
+
+    public CardGroup getCardGroup() {
+        return cardGroup;
+    }
 }

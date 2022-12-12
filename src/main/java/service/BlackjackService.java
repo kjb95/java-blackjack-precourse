@@ -9,6 +9,7 @@ import dto.CardDto;
 import dto.DealerCardResultDto;
 import dto.PlayerCardDto;
 import dto.PlayerCardResultDto;
+import dto.RevenueDto;
 import java.util.List;
 
 public class BlackjackService {
@@ -55,4 +56,9 @@ public class BlackjackService {
     public List<PlayerCardResultDto> findPlayersCardResult() {
         return playerGroup.createPlayerCardResultDtos();
     }
+
+    public List<RevenueDto> computeRevenue() {
+        return playerGroup.computeRevenue(dealer);
+    }
+
 }

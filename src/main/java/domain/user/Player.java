@@ -1,8 +1,10 @@
 package domain.user;
 
+import domain.WinningResult;
 import dto.CardDto;
 import dto.PlayerCardDto;
 import dto.PlayerCardResultDto;
+import dto.RevenueDto;
 import java.util.List;
 
 /**
@@ -33,5 +35,11 @@ public class Player extends User {
         List<CardDto> cardDtos = cardGroup.toDto();
         int score = cardGroup.computeScore();
         return new PlayerCardResultDto(name, cardDtos, score);
+    }
+
+    public RevenueDto computeRevenue(User dealer) {
+        WinningResult winningResult = cardGroup.computeWinningResult(dealer.getCardGroup());
+        int revenue = winningResult.computeRevenue(bettingMoney);
+        return new RevenueDto(name, revenue);
     }
 }

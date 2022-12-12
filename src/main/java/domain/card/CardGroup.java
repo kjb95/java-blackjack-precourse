@@ -1,6 +1,7 @@
 package domain.card;
 
 import constant.Constant;
+import domain.WinningResult;
 import dto.CardDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,33 @@ public class CardGroup {
         return (int) cards.stream()
                 .filter(Card::isAce)
                 .count();
+    }
+
+    public WinningResult computeWinningResult(CardGroup target) {
+        if (isBlackjack() && !target.isBlackjack()) {
+            return WinningResult.BLACKJACK;
+        }
+        if (isBurst()) {
+            return WinningResult.LOSE;
+        }
+        if (target.isBurst()) {
+            return WinningResult.WIN;
+        }
+        if (computeScore() > target.computeScore()) {
+            return WinningResult.WIN;
+        }
+        if (computeScore() < target.computeScore()) {
+            return WinningResult.LOSE;
+        }
+        return WinningResult.DRAW;
+    }
+
+    private boolean isBlackjack() {
+        return computeScore() == Constant.BLACK_SCORE && cards.size() == Constant.BLACK_CARD_COUNT;
+    }
+
+    private boolean isBurst() {
+        return computeScore() >= Constant.BURST_SCORE_MIN;
     }
 
 }

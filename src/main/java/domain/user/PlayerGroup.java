@@ -4,6 +4,7 @@ import constant.ErrorMessage;
 import domain.card.Deck;
 import dto.PlayerCardDto;
 import dto.PlayerCardResultDto;
+import dto.RevenueDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +43,12 @@ public class PlayerGroup {
     public List<PlayerCardResultDto> createPlayerCardResultDtos() {
         return players.stream()
                 .map(Player::createPlayerCardResultDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<RevenueDto> computeRevenue(User dealer) {
+        return players.stream()
+                .map(player -> player.computeRevenue(dealer))
                 .collect(Collectors.toList());
     }
 }

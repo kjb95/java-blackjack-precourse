@@ -4,6 +4,7 @@ import dto.CardDto;
 import dto.DealerCardResultDto;
 import dto.PlayerCardDto;
 import dto.PlayerCardResultDto;
+import dto.RevenueDto;
 import java.util.List;
 import service.BlackjackService;
 import utils.Utils;
@@ -17,7 +18,8 @@ public class BlackjackController {
     public void run() {
         List<String> playerNames = initPlayers();
         drawMoreCard(playerNames);
-        printResult();
+        printCardResult();
+        printRevenueResult();
     }
 
     private List<String> initPlayers() {
@@ -62,10 +64,15 @@ public class BlackjackController {
         dealerDrawMoreCard();
     }
 
-    private void printResult() {
+    private void printCardResult() {
         DealerCardResultDto dealerCardResultDto = blackjackService.findDealerCardResult();
         OutputView.printDealerCardResult(dealerCardResultDto);
         List<PlayerCardResultDto> playerCardResultDtos = blackjackService.findPlayersCardResult();
         OutputView.printPlayersCardResult(playerCardResultDtos);
+    }
+
+    private void printRevenueResult() {
+        List<RevenueDto> revenueResultDtos = blackjackService.computeRevenue();
+        OutputView.printRevenueResult(revenueResultDtos);
     }
 }
