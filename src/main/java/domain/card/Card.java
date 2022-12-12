@@ -18,6 +18,14 @@ public class Card {
 
     // TODO Card 관련 추가 기능 구현
 
+    public String getSymbolName() {
+        return symbol.name();
+    }
+
+    public String getTypeName() {
+        return type.name();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

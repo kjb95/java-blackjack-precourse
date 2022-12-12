@@ -1,5 +1,6 @@
 package controller;
 
+import dto.CardDto;
 import java.util.List;
 import service.BlackjackService;
 import utils.Utils;
@@ -12,6 +13,7 @@ public class BlackjackController {
 
     public void run() {
         initPlayer();
+        initCardDistribution();
     }
 
     private void initPlayer() {
@@ -23,5 +25,10 @@ public class BlackjackController {
         int betAmount = Utils.exceptionHandlingRepeat(InputView::requestPlayerBetAmount, playerName, OutputView::printErrorMessage);
         blackjackService.addPlayer(playerName, betAmount);
     }
+
+    private void initCardDistribution() {
+        CardDto cardDto = blackjackService.dealerInitCardDistribution();
+    }
+
 
 }
