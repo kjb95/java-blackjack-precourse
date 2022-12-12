@@ -6,6 +6,7 @@ import domain.user.Dealer;
 import domain.user.Player;
 import domain.user.PlayerGroup;
 import dto.CardDto;
+import dto.DealerCardResultDto;
 import dto.PlayerCardDto;
 import java.util.List;
 
@@ -44,5 +45,9 @@ public class BlackjackService {
 
     public void dealerDrawCard() {
         dealer.addCard(deck.draw());
+    }
+
+    public DealerCardResultDto findDealerCardResult() {
+        return dealer.toDto();
     }
 }

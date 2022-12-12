@@ -4,6 +4,7 @@ import constant.Constant;
 import constant.Message;
 import constant.MessageForm;
 import dto.CardDto;
+import dto.DealerCardResultDto;
 import dto.PlayerCardDto;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,6 +59,14 @@ public class OutputView {
     }
 
     public static void printNewLine() {
+        System.out.println();
+    }
+
+    public static void printDealerCardResult(DealerCardResultDto dealerCardResultDto) {
+        List<CardDto> cardDtos = dealerCardResultDto.getCards();
+        int score = dealerCardResultDto.getScore();
+        String cards = cardDtosToString(cardDtos);
+        System.out.printf(MessageForm.DEALER_CARD_RESULT_FROM, cards, score);
         System.out.println();
     }
 }
