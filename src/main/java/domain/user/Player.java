@@ -2,6 +2,7 @@ package domain.user;
 
 import dto.CardDto;
 import dto.PlayerCardDto;
+import dto.PlayerCardResultDto;
 import java.util.List;
 
 /**
@@ -28,4 +29,9 @@ public class Player extends User {
         return this.name.equals(name);
     }
 
+    public PlayerCardResultDto createPlayerCardResultDto() {
+        List<CardDto> cardDtos = cardGroup.toDto();
+        int score = cardGroup.computeScore();
+        return new PlayerCardResultDto(name, cardDtos, score);
+    }
 }

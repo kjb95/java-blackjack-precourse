@@ -3,6 +3,7 @@ package controller;
 import dto.CardDto;
 import dto.DealerCardResultDto;
 import dto.PlayerCardDto;
+import dto.PlayerCardResultDto;
 import java.util.List;
 import service.BlackjackService;
 import utils.Utils;
@@ -64,5 +65,7 @@ public class BlackjackController {
     private void printResult() {
         DealerCardResultDto dealerCardResultDto = blackjackService.findDealerCardResult();
         OutputView.printDealerCardResult(dealerCardResultDto);
+        List<PlayerCardResultDto> playerCardResultDtos = blackjackService.findPlayersCardResult();
+        OutputView.printPlayersCardResult(playerCardResultDtos);
     }
 }

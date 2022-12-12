@@ -3,6 +3,7 @@ package domain.user;
 import constant.ErrorMessage;
 import domain.card.Deck;
 import dto.PlayerCardDto;
+import dto.PlayerCardResultDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,5 +37,11 @@ public class PlayerGroup {
                 .filter(player -> player.isSameName(playerName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_PLAYER));
+    }
+
+    public List<PlayerCardResultDto> createPlayerCardResultDtos() {
+        return players.stream()
+                .map(Player::createPlayerCardResultDto)
+                .collect(Collectors.toList());
     }
 }

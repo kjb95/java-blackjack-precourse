@@ -9,4 +9,5 @@ public class MessageForm {
     public static final String PLAYER_INIT_CARD_FORM = "%s카드: %s";
     public static final String REQUEST_DRAW_MORE_CARD = "%s는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)";
     public static final String DEALER_CARD_RESULT_FROM = "딜러 카드: %s - 결과: %d";
+    public static final String PLAYER_CARD_RESULT_FORM = "%s카드: %s - 결과: %d";
 }

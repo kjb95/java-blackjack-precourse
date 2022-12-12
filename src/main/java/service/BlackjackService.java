@@ -8,6 +8,7 @@ import domain.user.PlayerGroup;
 import dto.CardDto;
 import dto.DealerCardResultDto;
 import dto.PlayerCardDto;
+import dto.PlayerCardResultDto;
 import java.util.List;
 
 public class BlackjackService {
@@ -49,5 +50,9 @@ public class BlackjackService {
 
     public DealerCardResultDto findDealerCardResult() {
         return dealer.toDto();
+    }
+
+    public List<PlayerCardResultDto> findPlayersCardResult() {
+        return playerGroup.createPlayerCardResultDtos();
     }
 }
