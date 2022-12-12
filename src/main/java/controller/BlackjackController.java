@@ -1,11 +1,14 @@
 package controller;
 
 import java.util.List;
+import service.BlackjackService;
 import utils.Utils;
 import view.InputView;
 import view.OutputView;
 
 public class BlackjackController {
+
+    private BlackjackService blackjackService = new BlackjackService();
 
     public void run() {
         initPlayer();
@@ -18,7 +21,7 @@ public class BlackjackController {
 
     private void initPlayer(String playerName) {
         int betAmount = Utils.exceptionHandlingRepeat(InputView::requestPlayerBetAmount, playerName, OutputView::printErrorMessage);
-
+        blackjackService.addPlayer(playerName, betAmount);
     }
 
 }
