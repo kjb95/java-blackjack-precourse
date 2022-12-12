@@ -34,4 +34,8 @@ public class Player {
         return new PlayerCardDto(name, cardDtos);
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
 }

@@ -39,5 +39,11 @@ public class BlackjackController {
 
     private void drawMoreCard(String playerName) {
         boolean isDrawCard = Utils.exceptionHandlingRepeat(InputView::requestDrawMoreCard, playerName, OutputView::printErrorMessage);
+        if (!isDrawCard) {
+            return;
+        }
+        PlayerCardDto playerCardDto = blackjackService.drawCard(playerName);
+        OutputView.printPlayerCard(playerCardDto);
+        drawMoreCard(playerName);
     }
 }

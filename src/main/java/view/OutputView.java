@@ -30,11 +30,11 @@ public class OutputView {
     }
 
     public static void printPlayersInitCard(List<PlayerCardDto> playerCardDtos) {
-        playerCardDtos.forEach(OutputView::printPlayerInitCard);
+        playerCardDtos.forEach(OutputView::printPlayerCard);
         System.out.println();
     }
 
-    private static void printPlayerInitCard(PlayerCardDto playerCardDto) {
+    public static void printPlayerCard(PlayerCardDto playerCardDto) {
         String playerName = playerCardDto.getPlayerName();
         List<CardDto> cardDtos = playerCardDto.getCardDtos();
         String cards = cardDtosToString(cardDtos);

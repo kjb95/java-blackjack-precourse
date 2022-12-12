@@ -1,5 +1,6 @@
 package domain.user;
 
+import constant.ErrorMessage;
 import domain.card.Deck;
 import dto.PlayerCardDto;
 import java.util.ArrayList;
@@ -27,5 +28,13 @@ public class PlayerGroup {
         return players.stream()
                 .map(Player::createPlayerCardDto)
                 .collect(Collectors.toList());
+    }
+
+
+    public Player findPlayerByName(String playerName) {
+        return players.stream()
+                .filter(player -> player.isSameName(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_PLAYER));
     }
 }

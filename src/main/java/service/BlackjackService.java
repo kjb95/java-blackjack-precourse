@@ -31,4 +31,10 @@ public class BlackjackService {
         playerGroup.initCardDistribution(deck);
         return playerGroup.createPlayerCardDtos();
     }
+
+    public PlayerCardDto drawCard(String playerName) {
+        Player player = playerGroup.findPlayerByName(playerName);
+        player.addCard(deck.draw());
+        return player.createPlayerCardDto();
+    }
 }
