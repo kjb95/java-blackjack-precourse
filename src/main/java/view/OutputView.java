@@ -31,6 +31,7 @@ public class OutputView {
 
     public static void printPlayersInitCard(List<PlayerCardDto> playerCardDtos) {
         playerCardDtos.forEach(OutputView::printPlayerInitCard);
+        System.out.println();
     }
 
     private static void printPlayerInitCard(PlayerCardDto playerCardDto) {

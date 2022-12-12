@@ -54,4 +54,12 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.WRONG_PLAYER_BET_AMOUNT);
         }
     }
+
+    public static boolean requestDrawMoreCard(String playerName) {
+        System.out.printf(MessageForm.REQUEST_DRAW_MORE_CARD, playerName);
+        System.out.println();
+        String input = scanner.nextLine();
+        DrawMoreCardSelection.validate(input);
+        return input.equals(DrawMoreCardSelection.YES.getSelection());
+    }
 }
